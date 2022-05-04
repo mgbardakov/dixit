@@ -1,4 +1,4 @@
-package site.hornsandhooves.dixit.model;
+package site.hornsandhooves.dixit.model.game;
 
 import lombok.Data;
 

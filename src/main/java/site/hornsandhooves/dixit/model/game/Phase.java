@@ -1,4 +1,4 @@
-package site.hornsandhooves.dixit.model;
+package site.hornsandhooves.dixit.model.game;
 
 public enum Phase {
     RIDDLING,
