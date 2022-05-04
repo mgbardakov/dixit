@@ -1,0 +1,25 @@
+.Deck__list {
+    display: flex;
+    border: 3px solid #071a07;
+    grid-column: 8/9;
+    grid-row: 1/4;
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: bisque;
+
+}
+
+.Deck__item {
+    width: 100%;
+    height: auto;
+    border-bottom: 3px solid #071a07;
+    font-size: 35px;
+    color: lightcoral;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
