@@ -54,7 +54,7 @@ const Auth: React.FC = () => {
     const hasNameBlock: JSX.Element = <div className="auth__block">
         <p>Добро пожаловать, {name}</p>
         <Button mt={4} w={'100%'} colorScheme='blue' onClick={createGame}>Создать игру</Button>
-        <Button mt={4} w={'100%'} colorScheme='blue' onClick={openModal}>Войти в существующую</Button>
+        <Button mt={4} w={'100%'} colorScheme='blue' onClick={openModal}>Войти в игру</Button>
     </div>
 
 
