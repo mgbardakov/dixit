@@ -18,7 +18,6 @@ public class InmemoryLobbyStateService implements LobbyStateService {
 
     @Override
     public Lobby addNewLobby(User user) {
-        registerUser(user);
         var lobbyId = "";
         while(lobbyMap.containsKey(lobbyId)) {
             lobbyId = StringUtils.getRandomString(LOBBY_ID_LENGTH);
@@ -32,7 +31,6 @@ public class InmemoryLobbyStateService implements LobbyStateService {
 
     @Override
     public Lobby joinLobby(String lobbyId, User user) {
-        registerUser(user);
         return Optional.ofNullable(lobbyMap.get(lobbyId)).map(lobby -> {
             lobby.addUser(user);
             return lobby;
@@ -59,10 +57,9 @@ public class InmemoryLobbyStateService implements LobbyStateService {
         lobbyMap.remove(lobbyId);
     }
 
-    private void registerUser(User user) {
-        if (user.getId() == null) {
-            user.setId(UUID.randomUUID());
-        }
+    @Override
+    public boolean isLobbyExist(String lobbyId) {
+        return lobbyMap.containsKey(lobbyId);
     }
 
 }

@@ -8,4 +8,6 @@ public interface LobbyStateService {
     Lobby joinLobby(String lobbyId, User user);
     Lobby leaveLobby(String lobbyId, User user);
     void removeLobby(String lobbyId);
+    boolean isLobbyExist(String lobbyId);
+
 }
