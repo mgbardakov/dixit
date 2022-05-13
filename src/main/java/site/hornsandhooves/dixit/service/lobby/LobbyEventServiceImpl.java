@@ -1,9 +1,9 @@
 package site.hornsandhooves.dixit.service.lobby;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-import site.hornsandhooves.dixit.events.lobby.LobbyEvent;
+import site.hornsandhooves.dixit.model.events.lobby.LobbyEvent;
+import site.hornsandhooves.dixit.model.events.lobby.LobbyEventType;
 import site.hornsandhooves.dixit.model.lobby.Lobby;
 
 @Component
@@ -15,16 +15,8 @@ public class LobbyEventServiceImpl implements LobbyEventService {
     @Override
     public Lobby processEvent(LobbyEvent event) {
         Lobby lobby = null;
-        switch (event.getType()) {
-            case CREATE_LOBBY:
-                lobby = lobbyStateService.addNewLobby(event.getUser());
-                break;
-            case ENTER_LOBBY:
-                lobby = lobbyStateService.joinLobby(event.getLobbyId(), event.getUser());
-                break;
-            case LEAVE_LOBBY:
-                lobby = lobbyStateService.leaveLobby(event.getLobbyId(), event.getUser());
-                break;
+        if (event.getType() == LobbyEventType.CREATE_LOBBY) {
+            lobby = lobbyStateService.addNewLobby(event.getUser());
         }
         return lobby;
     }
