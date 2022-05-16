@@ -34,7 +34,6 @@ public class TopicVerifyingAspect {
         var dest = destinationResolver.getDestination(arg.getMessage());
         if (dest != null && pattern.matcher(dest).matches()) {
             if (Objects.equals(arg.getMessage().getHeaders().get("simpMessageType"), SimpMessageType.SUBSCRIBE)) {
-                var subId = (String) arg.getMessage().getHeaders().get("simpSubscriptionId");
                 destinationResolver.addDestination(arg.getMessage());
             }
             return pjp.proceed(pjp.getArgs());
