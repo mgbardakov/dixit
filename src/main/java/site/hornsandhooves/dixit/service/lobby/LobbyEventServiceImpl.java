@@ -16,7 +16,7 @@ public class LobbyEventServiceImpl implements LobbyEventService {
     public Lobby processEvent(LobbyEvent event) {
         Lobby lobby = null;
         if (event.getType() == LobbyEventType.CREATE_LOBBY) {
-            lobby = lobbyStateService.addNewLobby(event.getUser());
+            lobby = lobbyStateService.addNewLobby();
         }
         return lobby;
     }

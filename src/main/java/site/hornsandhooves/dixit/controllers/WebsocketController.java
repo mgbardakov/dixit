@@ -8,11 +8,9 @@ import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.messaging.support.GenericMessage;
 import org.springframework.stereotype.Controller;
 import site.hornsandhooves.dixit.model.events.lobby.LobbyEvent;
-import site.hornsandhooves.dixit.model.lobby.Lobby;
 import site.hornsandhooves.dixit.service.lobby.LobbyEventService;
 
 @Controller
-@NoArgsConstructor
 @AllArgsConstructor
 public class WebsocketController {
 
@@ -20,7 +18,7 @@ public class WebsocketController {
 
     @MessageMapping("/lobby")
     @SendToUser("/queue/private-messages")
-    public Message<Lobby> sendEvent(LobbyEvent event) {
+    public Message<Object> sendEvent(LobbyEvent event) {
         return new GenericMessage<>(lobbyEventService.processEvent(event));
     }
 }

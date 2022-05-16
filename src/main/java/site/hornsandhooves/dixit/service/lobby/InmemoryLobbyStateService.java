@@ -17,14 +17,18 @@ public class InmemoryLobbyStateService implements LobbyStateService {
     private final Map<String, Lobby> lobbyMap = new HashMap<>();
 
     @Override
-    public Lobby addNewLobby(User user) {
-        var lobbyId = "";
+    public Lobby getLobbyByKey(String lobbyKey) {
+        return lobbyMap.get(lobbyKey);
+    }
+
+    @Override
+    public Lobby addNewLobby() {
+        var lobbyId = StringUtils.getRandomString(LOBBY_ID_LENGTH);
         while(lobbyMap.containsKey(lobbyId)) {
             lobbyId = StringUtils.getRandomString(LOBBY_ID_LENGTH);
         }
         var lobby = new Lobby();
         lobby.setLobbyId(lobbyId);
-        lobby.addUser(user);
         lobbyMap.put(lobbyId, lobby);
         return lobby;
     }

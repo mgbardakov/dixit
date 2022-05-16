@@ -9,5 +9,4 @@ import site.hornsandhooves.dixit.model.lobby.User;
 public class LobbyEvent {
     private final LobbyEventType type;
     private final String lobbyId;
-    private final User user;
 }
