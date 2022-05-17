@@ -49,8 +49,12 @@ public class InmemoryLobbyStateService implements LobbyStateService {
         if (lobbyMap.get(lobbyId).getUsers().stream().noneMatch(us -> us.getId().equals(user.getId()))) {
             throw new RuntimeException("No such user");
         }
-        lobbyMap.get(lobbyId).getUsers().removeIf(us -> us.getId().equals(user.getId()));
-        return lobbyMap.get(lobbyId);
+        var lobby = lobbyMap.get(lobbyId);
+        lobby.getUsers().removeIf(us -> us.getId().equals(user.getId()));
+        if(lobby.getUsers().stream().noneMatch(User::isHost) && lobby.getUsers().size() > 0) {
+            lobby.getUsers().iterator().next().setHost(true);
+        }
+        return lobby;
     }
 
     @Override
