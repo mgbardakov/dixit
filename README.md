@@ -1,7 +1,7 @@
 # dixit
 
-mvn spring-boot:run - запуск сервера  
+из папки dixit: mvn spring-boot:run - запуск сервера  
 
-cd react-app => npm start  - запуск клиента  
+из папки react-app: npm start  - запуск клиента  
 
-npm run build - создать билд
+из папки react-app: npm run build - создать билд
