@@ -7,7 +7,6 @@ import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
@@ -43,8 +42,7 @@ public class SimpDestinationResolver implements DestinationResolver {
 
     private TopicId getTopicIdFromMessage(Message<?> message) {
         var userId = ((Principal) Objects.requireNonNull(message.getHeaders().get("simpUser"))).getName();
-        return new TopicId((String) message.getHeaders().get("simpSubscriptionId"),
-                userId);
+        return new TopicId(userId, (String) message.getHeaders().get("simpSubscriptionId"));
     }
     @Data
     @AllArgsConstructor
