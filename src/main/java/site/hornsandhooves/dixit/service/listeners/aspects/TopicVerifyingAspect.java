@@ -6,14 +6,12 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.messaging.Message;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.AbstractSubProtocolEvent;
 import site.hornsandhooves.dixit.service.listeners.annotations.TopicEventListener;
 import site.hornsandhooves.dixit.service.lobby.DestinationResolver;
 
-import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
