@@ -23,7 +23,7 @@ public class MessageExceptionHandlingAspect {
 
     @Around("@annotation(site.hornsandhooves.dixit.service.listeners.annotations.EnableMessageExceptionHandler)")
     @SneakyThrows
-    public Object verifyTopic(ProceedingJoinPoint pjp) {
+    public Object processExceptions(ProceedingJoinPoint pjp) {
         var arg = (AbstractSubProtocolEvent) pjp.getArgs()[0];
         var rsl = new Object();
         try {
