@@ -1,12 +1,12 @@
 package site.hornsandhooves.dixit.service.lobby;
 
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import site.hornsandhooves.dixit.model.events.lobby.LobbyEvent;
 import site.hornsandhooves.dixit.model.events.lobby.LobbyEventType;
 import site.hornsandhooves.dixit.model.lobby.Lobby;
 
-@Component
+@Service
 @AllArgsConstructor
 public class LobbyEventServiceImpl implements LobbyEventService {
 

@@ -23,14 +23,14 @@ public class MessageExceptionHandlingAspect {
 
     @Around("@annotation(site.hornsandhooves.dixit.service.listeners.annotations.EnableMessageExceptionHandler)")
     @SneakyThrows
-    public Object verifyTopic(ProceedingJoinPoint pjp) {
+    public Object processExceptions(ProceedingJoinPoint pjp) {
         var arg = (AbstractSubProtocolEvent) pjp.getArgs()[0];
         var rsl = new Object();
         try {
             rsl = pjp.proceed(pjp.getArgs());
-        } catch (Throwable e) {
+        } catch (RuntimeException e) {
             simp.convertAndSendToUser(Objects.requireNonNull(arg.getUser()).getName(),
-                    "/queue/private-messages", new GenericMessage<>(String.format("{\"errorMessage\": %s}", e.getMessage())));
+                    "/queue/private-messages", new GenericMessage<>(String.format("{errorMessage: %s}", e.getMessage())));
         }
         return rsl;
     }
