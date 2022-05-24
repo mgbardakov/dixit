@@ -6,6 +6,8 @@ import { Center, Input, Button } from '@chakra-ui/react'
 import './Auth.scss'
 import { useEffect, useState, SyntheticEvent } from "react";
 import AuthModal from '../../components/AuthModal/AuthModal'
+import { useDispatch, useSelector } from "react-redux";
+import { createPlayer } from "../../redux/actions/createPlayer";
 
 
 
@@ -18,12 +20,21 @@ const Auth: React.FC = () => {
     const [hasName, setHasName] = useState<boolean>(false)
     const [modalOpen, setModalOpen] = useState<boolean>(false)
 
+    const posts = useSelector((state: any) => {
+        return state.posts.post
+    })
 
-    const gameID = 'sdfaaaw'
+
+    const dispatch = useDispatch<any>()
 
     useEffect(() => {
         nameHandler()
+        dispatch(createPlayer())
     }, [])
+
+    useEffect(() => {
+        console.log(posts)
+    }, [posts])
 
     function nameHandler(): void {
         let name: Nullable<string> = localStorage.getItem('playerName')

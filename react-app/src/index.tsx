@@ -4,8 +4,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css'
 import { ChakraProvider } from '@chakra-ui/react'
+import { Provider } from 'react-redux'
+import { createStore, compose, applyMiddleware } from 'redux'
+import { rootReducer } from './redux/reducers/rootReducer';
+import thunk from 'redux-thunk';
 
-
+const store = createStore(rootReducer, compose(
+  applyMiddleware(thunk),
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+))
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,8 +20,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ChakraProvider>
-
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ChakraProvider>
   </React.StrictMode>
 );

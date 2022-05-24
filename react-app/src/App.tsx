@@ -9,18 +9,20 @@ import {
   Route
 } from "react-router-dom";
 
-import { useLocation } from 'react-router-dom';
+
+
 
 
 function App() {
+
 
   return (
 
 
     <Router>
+
       <div>
         <Routes>
-
           <Route path="/" element={<Auth />}>
           </Route>
           <Route path="game/:gameID" element={<Dixit />}>
@@ -31,6 +33,7 @@ function App() {
           </Route>
         </Routes>
       </div>
+
     </Router>
   );
 }
