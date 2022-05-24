@@ -8,8 +8,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-
-
+// @ts-ignore
+import SockJsClient from 'react-stomp';
 
 
 
@@ -20,7 +20,9 @@ function App() {
 
 
     <Router>
-
+      <SockJsClient url='http://localhost:8080/gs-guide-websocket?userName=asd' topics={['/topics/all']}
+        onMessage={(msg: any) => { console.log(msg); }}
+      />
       <div>
         <Routes>
           <Route path="/" element={<Auth />}>
