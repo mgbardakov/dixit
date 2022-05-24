@@ -11,7 +11,7 @@ import thunk from 'redux-thunk';
 
 const store = createStore(rootReducer, compose(
   applyMiddleware(thunk),
-  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+  //(window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
 ))
 
 const root = ReactDOM.createRoot(
