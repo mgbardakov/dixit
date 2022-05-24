@@ -1,8 +1,11 @@
 package site.hornsandhooves.dixit;
 
 import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.support.GenericMessage;
+import org.springframework.web.socket.messaging.SessionSubscribeEvent;
+import org.springframework.web.socket.messaging.SessionUnsubscribeEvent;
 import site.hornsandhooves.dixit.model.events.lobby.LobbyEvent;
 import site.hornsandhooves.dixit.model.events.lobby.LobbyEventType;
 import site.hornsandhooves.dixit.model.lobby.Lobby;
@@ -39,10 +42,34 @@ public class TestDataFactory {
         return new LobbyEvent(LobbyEventType.CREATE_LOBBY, null);
     }
 
-    public static Lobby getLobby() {
+    public static Lobby getEmptyLobby() {
         var lobby = new Lobby();
         lobby.setLobbyId(LOBBY_ID);
         return lobby;
     }
+
+    public static Lobby getLobbyWithUser() {
+        var lobby = getEmptyLobby();
+        lobby.addUser(getUser());
+        return lobby;
+    }
+
+    public static SessionSubscribeEvent getSubscribeEvent() {
+        var headers = new MessageHeaders(Map.of("simpMessageType", SimpMessageType.SUBSCRIBE,
+                "simpDestination", "/topic/lobby/abc123",
+                "simpUser", (Principal) () -> TestDataFactory.getUser().getId().toString(),
+                "simpSubscriptionId", "sub-0"));
+        var message = new GenericMessage<>(new byte[]{}, headers);
+        return new SessionSubscribeEvent(new Object(), message);
+    }
+    public static SessionUnsubscribeEvent getUnsubscribeEvent() {
+        var headers = new MessageHeaders(Map.of("simpMessageType", SimpMessageType.UNSUBSCRIBE,
+                "simpDestination", "/topic/lobby/abc123",
+                "simpUser", (Principal) () -> TestDataFactory.getUser().getId().toString(),
+                "simpSubscriptionId", "sub-0"));
+        var message = new GenericMessage<>(new byte[]{}, headers);
+        return new SessionUnsubscribeEvent(new Object(), message);
+    }
+
 
 }

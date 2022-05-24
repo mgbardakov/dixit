@@ -35,7 +35,7 @@ class LobbyEventServiceImplTest {
     void whenProcessCreateLobbyEvent() {
         //when
         var event = TestDataFactory.getCreateLobbyEvent();
-        when(lobbyStateService.addNewLobby()).thenReturn(TestDataFactory.getLobby());
+        when(lobbyStateService.addNewLobby()).thenReturn(TestDataFactory.getEmptyLobby());
         //then
         var lobby = lobbyEventService.processEvent(event);
         //assertions

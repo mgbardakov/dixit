@@ -28,7 +28,7 @@ public class MessageExceptionHandlingAspect {
         var rsl = new Object();
         try {
             rsl = pjp.proceed(pjp.getArgs());
-        } catch (Throwable e) {
+        } catch (RuntimeException e) {
             simp.convertAndSendToUser(Objects.requireNonNull(arg.getUser()).getName(),
                     "/queue/private-messages", new GenericMessage<>(String.format("{errorMessage: %s}", e.getMessage())));
         }
