@@ -3,7 +3,6 @@ package site.hornsandhooves.dixit.service.listeners;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.simp.SimpMessageType;
