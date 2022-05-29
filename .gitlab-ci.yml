@@ -1,0 +1,30 @@
+image: docker:latest
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+  USER_GITLAB: mgbardakov
+  APP_NAME: dixit-main
+  REPO: dixit
+
+stages:
+  - build
+  - docker
+
+maven-build:
+  image: maven:3.8.5-openjdk-11-slim
+  stage: build
+  script: "mvn package -B"
+  artifacts:
+    paths:
+      - target/*.jar
+
+docker-build:
+  stage: docker
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build -t registry.gitlab.com/$USER_GITLAB/$REPO .
+    - docker push registry.gitlab.com/$USER_GITLAB/$REPO
+
+
